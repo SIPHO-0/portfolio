@@ -10,19 +10,23 @@ const Portfolio = () => {
   const portfolios = [
     {
       id: 1,
-      src: blog
+      src: blog,
+      codeHref: ''
     },
     {
       id: 2,
-      src: crud
+      src: crud,
+      codeHref: ''
     },
     {
       id: 3,
-      src: toDo
+      src: toDo,
+      codeHref: 'https://github.com/SIPHO-0/todo'
     },
     {
       id: 4,
-      src: invoice
+      src: invoice,
+      codeHref: ''
     },
   ];
   return (
@@ -36,14 +40,14 @@ const Portfolio = () => {
             <div className="max-w-screen-lg  mx-auto p-4 flex flex-col justify-center w-full h-full text-white">
              
                 <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm-px-0">
-                  {portfolios.map(({id, src}) => (
+                  {portfolios.map(({id, src, codeHref}) => (
                 <div   key={id} className='shadow-md shadow-gray-600 rounded-lg'>
                 <img src={src} 
                 alt=""
                 className="rounded-md duration-200 hover:scale-105"/>
                 <div className='flex items-center justify-center'>
-                  <button className='w-1/2 px-6 py-3 m-4 duration-200 hover:scale-105'>Demo</button>
-                  <button className='w-1/2 px-6 py-3 m-4 duration-200 hover:scale-105'>Code</button>
+                        <button className='w-1/2 px-6 py-3 m-4 duration-200 hover:scale-105' >Demo</button>
+                  <button className='w-1/2 px-6 py-3 m-4 duration-200 hover:scale-105'><a  href={codeHref} target='_blank'>Code</a></button>
                 </div>
                 </div>  
            
