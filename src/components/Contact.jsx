@@ -1,6 +1,25 @@
-import React from 'react'
+import React, { useRef }  from 'react'
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
+    const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm('service_8cwvy1s', 'template_xdm1p38', form.current, {
+        publicKey: '4WKDy9p3CYOHJB_bG',
+      })
+      .then(
+        () => {
+          console.log('SUCCESS!');
+        },
+        (error) => {
+          console.log('FAILED...', error.text);
+        },
+      );
+  };
   return (
     <div name="contact" className="bg-gradient-to-b from-black to-gray-800 w-full  text-white">
 
@@ -11,16 +30,16 @@ const Contact = () => {
             </div>
 
             <div className="flex justify-center items-center">
-                <form action="" className="flex flex-col w-full md:w-1/2">
+                <form ref={form} onSubmit={sendEmail} action="" className="flex flex-col w-full md:w-1/2">
                 <input 
                     text="text"
-                    name="name"
+                    name="user_name"
                     placeholder="Enter your name"
                     className="p-2 bg-transparent border-2 rounded-md text-white focus:outline-none"
                     />
                     <input 
                     text="text"
-                    name="email"
+                    name="user_email"
                     placeholder="Enter your email address"
                     className="my-4 p-2 bg-transparent border-2 rounded-md text-white focus:outline-none"
                     />
@@ -33,7 +52,7 @@ const Contact = () => {
 
                     </textarea>
                     <button className="text-white bg-gradient-to-b from-cyan-500
-                     to-blue-500 px-6 py-3 my-8 mx-auto flex items-center rounded-md hover:scale-110 duration-300">Let's talk</button>
+                     to-blue-500 px-6 py-3 my-8 mx-auto flex items-center rounded-md hover:scale-110 duration-300" type="submit" value="Send">Let's talk</button>
                 </form>
             </div>
         </div>
@@ -41,4 +60,6 @@ const Contact = () => {
   )
 }
 
+
 export default Contact
+
